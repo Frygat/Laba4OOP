@@ -23,20 +23,21 @@ class Human:
         self._height = height
         self._name = name
 
+    #Базовые геттеры и сеттеры
+    #Они наследуются
     @property
     def age(self)->int:
+        """"Получить возраст человека"""
         return self._age
-
-    #Базовый сеттер
 
     @age.setter
     def age(self, n_age: int):
         """Установление нового возвраста человека
         Arg:
-            n_age(int): - Новый возраст человека
+            n_age(int): Новый возраст человека
         Raises:
             TypeError: Если аргумент не является целым числом
-            ValueError: Если аргумент является отрицательным
+            ValueError: Если аргумент отрицательный
             """
         if not isinstance(n_age, int):
             raise TypeError("Возраст должен бфть целочисленного типа")
@@ -77,6 +78,10 @@ class Human:
         """Представление человека для отладки."""
         return f'{self.__class__.__name__}(age={self.age}, height={self.height}, name={self.name})'
 
+    def age_in_months(self)->int:
+        """Получить возраст человека в годах"""
+        return self.age * 12
+
 
 # TODO: описать дочерний класс
 
@@ -88,7 +93,7 @@ class Man(Human):
         _Humanrace(str): Раса мужчины. Должен быть непублияным, чтобы предотвратить
                         случайное изменение извне
     """
-    #Переопределенный метод инициализации
+    #Переопределенный метод инициализации (перегружен)
     def __init__(self, age:int, height:float, name:str, Humanrace:str ):
         """
         Инциализация атрибутов Человека.
@@ -125,3 +130,4 @@ class Man(Human):
                 str: Сообщение о том, что мужчина дышит
         """
         return f'The{self.Humanrace} man is breathing'
+
